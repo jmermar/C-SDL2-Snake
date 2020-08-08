@@ -1,8 +1,8 @@
-#include "state.h"
-#include "map.h"
-#include "graphic.h"
-#include "game.h"
-#include "menu.h"
+#include "src/state.h"
+#include "src/map.h"
+#include "src/graphic.h"
+#include "src/game.h"
+#include "src/menu.h"
 #define SDL_SCANCODE_ENTER 28
 struct GameState state;
 
@@ -11,23 +11,15 @@ struct GameState state;
 #define false 0
 
 Uint32 S_previous = 0;
+Uint32 Time = 0;
+bool running = true;
 
-int main(int argc,char**argv) {
-	SetGrowSpeed(1);
-	SetSpeed(8);
-	SetScore(0);
-	
-	state.state = S_Game;
-	InitMap();
-	InitGraphics(MapW*16,MapH*16);
-	StartGame(&state);
-	state.state = S_GameOver;
-	Uint32 Time = 0;
-	Uint8 FPS = 30;
-	
-	bool running = true;
+void frame()
+{
 	SDL_Event event;
-	while(running) {
+	
+	Uint8 FPS = 30;
+	if (SDL_GetTicks() - Time >= 1000/FPS) {
 		Time = SDL_GetTicks();
 		while(SDL_PollEvent(&event)) {
 			switch(event.type) {
@@ -52,9 +44,29 @@ int main(int argc,char**argv) {
 		Time = SDL_GetTicks();
 		
 		if(state.state == S_Game)SnakeStep();	
-		
-		if(SDL_GetTicks()-Time < 1000/FPS) SDL_Delay(1000/FPS-(SDL_GetTicks()-Time));
 	}
+	
+	//if(SDL_GetTicks()-Time < 1000/FPS) SDL_Delay(1000/FPS-(SDL_GetTicks()-Time));
+
+
+}
+
+int main()
+{
+	SetGrowSpeed(1);
+	SetSpeed(8);
+	SetScore(0);
+	
+	state.state = S_Game;
+	InitMap();
+	InitGraphics(MapW*16,MapH*16);
+	StartGame(&state);
+	state.state = S_GameOver;
+	Time = 0;
+	
+	while(running)
+		frame();
 
 	QuitGraphics();	
+
 }

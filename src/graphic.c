@@ -1,6 +1,7 @@
 #include"graphic.h"
 #include"map.h"
 #include"state.h"
+#include"menu.h"
 
 void Print(const unsigned char* text,int x,int y);
 SDL_Texture* tileset=0;

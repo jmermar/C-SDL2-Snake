@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL2/SDL.h>
-#define Tabrows 14
-#define Tabcolls 14
+#define Tabrows 24
+#define Tabcolls 24
 #define MenuW 8
 
 
@@ -18,7 +18,7 @@
 #define T_FOOD 7
 #define T_ARROW 8
 
-unsigned char map[MapH][MapW];
+extern unsigned char map[MapH][MapW];
 
 
 void InitMap();

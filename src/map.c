@@ -1,5 +1,6 @@
 #include "map.h"
 #include<stdio.h>
+unsigned char map[MapH][MapW];
 
 void FillMapArea(Uint32 x1,Uint32 y1,Uint32 x2 , Uint32 y2,Uint8 value) {
 	if(x1>=MapW) x1 = MapW-1;
