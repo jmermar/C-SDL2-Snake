@@ -1,4 +1,8 @@
-# C SDL2 snake #
+# C SDL2 snake
+
+| ![](screenshot1.png) | ![](screenshot2.png) |
+| -------------------- | -------------------- |
+
 A simple snake game written in c with SDL2.
 I did this project even before going to university, when I was learning c and SDL2 by myself. Later on I added an option to compile it with emscripten so it can be played on a web browser.
 ### Play it online ###
